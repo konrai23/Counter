@@ -92,9 +92,10 @@ namespace Counter
                 return;
             }
             currentCount += change;
-            if (currentCount < 0)
+            if (currentCount < int.MinValue)
             {
-                currentCount = 0;
+                DisplayAlert("Limit osiągnięty", "Minimalna wartość licznika została osiągnięta.", "OK");
+                return;
             }
             else if (currentCount > int.MaxValue)
             {
