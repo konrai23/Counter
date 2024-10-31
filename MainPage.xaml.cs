@@ -10,7 +10,7 @@ namespace Counter
             InitializeComponent();
         }
 
-        // Dodaje nowy licznik na podstawie nazwy wpisanej przez użytkownika.
+        // Dodaje nowy licznik na podstawie nazwy wpisanej przez użytkownika
         private void OnAddCounterClicked(object sender, EventArgs e)
         {
             string counterName = CounterNameEntry.Text?.Trim();
