@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.Maui.Controls;
 
 namespace Counter
@@ -10,6 +10,7 @@ namespace Counter
             InitializeComponent();
         }
 
+        // Dodaje nowy licznik na podstawie nazwy wpisanej przez użytkownika
         private void OnAddCounterClicked(object sender, EventArgs e)
         {
             string counterName = CounterNameEntry.Text?.Trim();
@@ -21,9 +22,10 @@ namespace Counter
 
             var counterView = CreateCounterView(counterName);
             CountersContainer.Children.Add(counterView);
-            CounterNameEntry.Text = string.Empty; // Czyści pole tekstowe po dodaniu licznika
+            CounterNameEntry.Text = string.Empty;
         }
 
+        // Tworzy widok licznika z nazwą, etykietą stanu oraz przyciskami do zwiększania i zmniejszania wartości
         private StackLayout CreateCounterView(string counterName)
         {
             var counterLayout = new StackLayout
@@ -32,15 +34,16 @@ namespace Counter
                 Spacing = 10,
                 VerticalOptions = LayoutOptions.Center,
                 Padding = new Thickness(10),
-                BackgroundColor = Color.FromRgb(30, 30, 30), // Ciemne tło dla każdego licznika
-                Margin = new Thickness(0, 10, 0, 0) // Przerwa pomiędzy licznikami
+                BackgroundColor = Color.FromRgb(30, 30, 30),
+                Margin = new Thickness(0, 10, 0, 0)
             };
 
             var label = new Label
             {
                 Text = counterName,
+                HeightRequest = 80,
                 VerticalOptions = LayoutOptions.Center,
-                TextColor = Color.FromRgb(255, 105, 180) // HotPink
+                TextColor = Color.FromRgb(255, 105, 180)
             };
 
             var countLabel = new Label
@@ -48,15 +51,15 @@ namespace Counter
                 Text = "0",
                 VerticalOptions = LayoutOptions.Center,
                 WidthRequest = 50,
-                TextColor = Color.FromRgb(255, 255, 255) // Biały
+                TextColor = Color.FromRgb(255, 255, 255)
             };
 
             var incrementButton = new Button
             {
                 Text = "+",
                 VerticalOptions = LayoutOptions.Center,
-                BackgroundColor = Color.FromRgb(0, 0, 255), // Niebieski kolor
-                TextColor = Color.FromRgb(255, 255, 255), // Biały
+                BackgroundColor = Color.FromRgb(0, 0, 255),
+                TextColor = Color.FromRgb(255, 255, 255),
                 WidthRequest = 50
             };
             incrementButton.Clicked += (s, e) => UpdateCounter(countLabel, 1);
@@ -65,8 +68,8 @@ namespace Counter
             {
                 Text = "-",
                 VerticalOptions = LayoutOptions.Center,
-                BackgroundColor = Color.FromRgb(0, 0, 255), // Niebieski kolor
-                TextColor = Color.FromRgb(255, 255, 255), // Biały
+                BackgroundColor = Color.FromRgb(0, 0, 255),
+                TextColor = Color.FromRgb(255, 255, 255),
                 WidthRequest = 50
             };
             decrementButton.Clicked += (s, e) => UpdateCounter(countLabel, -1);
@@ -79,6 +82,7 @@ namespace Counter
             return counterLayout;
         }
 
+        // Aktualizuje wartość licznika zgodnie z przekazaną zmianą
         private void UpdateCounter(Label countLabel, int change)
         {
             int currentCount = int.Parse(countLabel.Text);
@@ -90,7 +94,7 @@ namespace Counter
             currentCount += change;
             if (currentCount < 0)
             {
-                currentCount = 0; // Nie pozwala na ujemne wartości
+                currentCount = 0;
             }
             else if (currentCount > int.MaxValue)
             {
