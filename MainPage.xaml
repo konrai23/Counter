@@ -23,7 +23,7 @@
                          Padding="10"
                          VerticalOptions="Start"
                          HorizontalOptions="FillAndExpand">
-                <!-- Tutaj będą dodawane liczniki -->
+                <!-- Tutaj będą dodawane kolejne liczniki -->
             </StackLayout>
         </ScrollView>
     </StackLayout>
